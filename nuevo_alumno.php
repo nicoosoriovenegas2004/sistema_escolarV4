@@ -4,6 +4,8 @@
 
 <title>Nuevo Alumno</title>
 
+<link rel="icon" type="image/png" href="imagenes/logo.png">
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
@@ -18,6 +20,14 @@
 
 <input type="text" name="apellido" class="form-control mb-3" placeholder="Apellido Alumno">
 
+      <select name="asignatura" class="form-control mb-3">
+<option>Matematicas</option>
+<option>Lenguaje</option>
+<option>Ingles</option>
+<option>Historia</option>
+<option>Ciencias</option>
+</select>
+
 <input type="text" name="direccion" class="form-control mb-3" placeholder="Dirección">
 
 <input type="text" name="telefono" class="form-control mb-3" placeholder="Teléfono">
@@ -25,6 +35,8 @@
 <input type="text" name="anio" class="form-control mb-3" placeholder="Año Escolar">
 
 <button class="btn btn-primary">Guardar</button>
+
+<a href="alumnos.php" class="btn btn-secondary">Volver</a>
 
 </form>
 

@@ -12,7 +12,6 @@ $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 $sql = "INSERT INTO usuarios(nombre,apellido,tipo_usuario,correo,password)
 VALUES('$nombre','$apellido','$tipo','$correo','$password')";
 
-// Ejecutar consulta
 mysqli_query($conexion,$sql);
 
 // Redireccionar

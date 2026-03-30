@@ -13,7 +13,47 @@ $fila = mysqli_fetch_assoc($resultado);
 <head>
     <title>Editar Usuario</title>
 
+    <link rel="icon" type="image/png" href="imagenes/logo.png">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-image: url("imagenes/fondo6.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .card {
+            background-color: #535353 !important; 
+            color: #fff !important;           
+        }
+
+        .form-label {
+            color: #fff !important;
+        }
+
+        .form-control {
+            background-color: #535353 !important; 
+            color: #fff !important;            
+            border: 1px solid #fff !important; 
+        }
+
+        .btn-secondary {
+            color: #fff !important;
+        }
+
+        .btn-success {
+            color: #fff !important;
+        }
+
+        h2 {
+            color: #fff;
+        }
+
+    </style>
 </head>
 
 <body class="bg-light">

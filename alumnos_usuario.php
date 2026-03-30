@@ -4,13 +4,13 @@ include("conexion.php");
 $buscar = isset($_GET['buscar']) ? $_GET['buscar'] : '';
 
 if($buscar != ''){
-    $sql = "SELECT * FROM docentes 
+    $sql = "SELECT * FROM alumnos 
             WHERE id LIKE'%$buscar%' 
-            OR nombre_docente LIKE '%$buscar%' 
-            OR asignatura LIKE '%$buscar%' 
-            OR correo_docente LIKE '%$buscar%'";
+            OR nombre_alumno LIKE '%$buscar%' 
+            OR apellido_alumno LIKE '%$buscar%' 
+            OR asignatura LIKE '%$buscar%'";
 } else {
-    $sql = "SELECT * FROM docentes";
+    $sql = "SELECT * FROM alumnos";
 }
 
 $resultado=mysqli_query($conexion,$sql);
@@ -20,9 +20,8 @@ $resultado=mysqli_query($conexion,$sql);
 <html>
     <head>
 
-    <title>Docentes</title>
-
-    <link rel="icon" type="image/png" href="imagenes/logo.png">
+    <title>Alumnos</title>
+   <link rel="icon" type="image/png" href="imagenes/logo.png">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -63,22 +62,22 @@ $resultado=mysqli_query($conexion,$sql);
         }
 
         h2 {
-            color: #fff;
+            color: #ffffff;
         }
     </style>
 </head>
 
 <body class="container mt-5">
 
-<H2>Gestion de Docentes</H2>
+<H2>Gestion de Alumnos</H2>
 
 <div class="d-flex justify-content-between align-items-center mb-3">
 
 <div class="d-flex gap-2 mb-3">
     
-    <a href="nuevo_docente.php" class="btn btn-success">Nuevo Docente</a>
+    <a href="dashboard_usuario.php" class="btn btn-secondary">Volver</a>
 
-    <a href="dashboard.php" class="btn btn-secondary">Volver</a>
+    <a href="exportar_excel.php" class="btn btn-primary">Exportar a Excel</a>
 
 </div>
 
@@ -87,7 +86,7 @@ $resultado=mysqli_query($conexion,$sql);
             type="text" 
             name="buscar" 
             class="form-control me-2" 
-            placeholder="Buscar Docente..."
+            placeholder="Buscar Alumno..."
             value="<?php echo $buscar; ?>"
         >
         <button type="submit" class="btn btn-primary">Buscar</button>
@@ -100,29 +99,28 @@ $resultado=mysqli_query($conexion,$sql);
 <tr>
 <th>ID </th>
 <th>Nombre </th>
-<th>Carrera </th>
-<th>Asignatura </th>
+<th>Apellido </th>
+<th>Direccion </th>
 <th>Telefono </th>
-<th>Correo </th>
-<th>Acciones</th>
+<th>Año </th>
+<th>Acciones </th>
 
 <?php while($fila=mysqli_fetch_array($resultado)){ ?>
 
     <tr>
         <td><?php echo $fila ['id'];?></td>
-        <td><?php echo $fila ['nombre_docente'];?></td>
-        <td><?php echo $fila ['carrera_docente'];?></td>
-        <td><?php echo $fila ['asignatura'];?></td>
-        <td><?php echo $fila ['telefono_docente'];?></td>
-        <td><?php echo $fila ['correo_docente'];?></td>
+        <td><?php echo $fila ['nombre_alumno'];?></td>
+        <td><?php echo $fila ['apellido_alumno'];?></td>
+        <td><?php echo $fila ['direccion_alumno'];?></td>
+        <td><?php echo $fila ['telefono_alumno'];?></td>
+        <td><?php echo $fila ['anio_escolar'];?></td>
 
 <td>
 
-<a href="editar_docente.php?id=<?php echo $fila['id']; ?>" class="btn btn-warning btn-sm">Editar</a>
-
-<a href="eliminar_docente.php?id=<?php echo $fila['id']; ?>" class="btn btn-danger btn-sm">Eliminar</a>
+    <a href="ver_notas_usuario.php?id=<?php echo $fila['id']; ?>" class="btn btn-info btn-sm">Ver Notas</a>
 
 </tr>
+
 </td>
 
 <?php
@@ -131,6 +129,7 @@ $resultado=mysqli_query($conexion,$sql);
 </table>
 
 <style>
+
 body {
   margin: 0;
   height: 100vh;

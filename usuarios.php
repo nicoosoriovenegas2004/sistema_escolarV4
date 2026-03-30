@@ -21,7 +21,51 @@ $resultado = mysqli_query($conexion, $sql);
 <html>
 <head>
     <title>Usuarios</title>
+
+    <link rel="icon" type="image/png" href="imagenes/logo.png">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-image: url("imagenes/fondo6.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        table {
+            width: 100%;
+            background-color: #535353 !important;
+            color: #fff !important;
+        }
+
+        table th, table td {
+            border: 1px solid #fff !important;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #535353 !important; 
+            color: #fff !important; 
+        }
+
+        table th {
+            background-color: #535353 !important;
+        }
+
+        .btn-warning { color: #535353 !important; }
+        .btn-danger, .btn-success, .btn-info, .btn-primary, .btn-secondary {
+            color: #fff !important;
+        }
+
+        .d-flex input[type="text"] {
+            max-width: 250px;
+        }
+
+        h2 {
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body class="container mt-5">

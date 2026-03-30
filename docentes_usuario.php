@@ -37,7 +37,7 @@ $resultado=mysqli_query($conexion,$sql);
 
         table {
             width: 100%;
-            background-color: #000 !important;
+            background-color: #535353 !important;
             color: #fff !important;
         }
 
@@ -53,7 +53,7 @@ $resultado=mysqli_query($conexion,$sql);
             background-color: #535353 !important; 
         }
 
-        .btn-warning { color: #000 !important; }
+        .btn-warning { color: #535353 !important; }
         .btn-danger, .btn-success, .btn-info, .btn-primary, .btn-secondary {
             color: #fff !important;
         }
@@ -63,7 +63,7 @@ $resultado=mysqli_query($conexion,$sql);
         }
 
         h2 {
-            color: #fff;
+            color: #ffffff;
         }
     </style>
 </head>
@@ -75,10 +75,8 @@ $resultado=mysqli_query($conexion,$sql);
 <div class="d-flex justify-content-between align-items-center mb-3">
 
 <div class="d-flex gap-2 mb-3">
-    
-    <a href="nuevo_docente.php" class="btn btn-success">Nuevo Docente</a>
 
-    <a href="dashboard.php" class="btn btn-secondary">Volver</a>
+    <a href="dashboard_usuario.php" class="btn btn-secondary">Volver</a>
 
 </div>
 
@@ -104,7 +102,6 @@ $resultado=mysqli_query($conexion,$sql);
 <th>Asignatura </th>
 <th>Telefono </th>
 <th>Correo </th>
-<th>Acciones</th>
 
 <?php while($fila=mysqli_fetch_array($resultado)){ ?>
 
@@ -116,14 +113,7 @@ $resultado=mysqli_query($conexion,$sql);
         <td><?php echo $fila ['telefono_docente'];?></td>
         <td><?php echo $fila ['correo_docente'];?></td>
 
-<td>
-
-<a href="editar_docente.php?id=<?php echo $fila['id']; ?>" class="btn btn-warning btn-sm">Editar</a>
-
-<a href="eliminar_docente.php?id=<?php echo $fila['id']; ?>" class="btn btn-danger btn-sm">Eliminar</a>
-
 </tr>
-</td>
 
 <?php
 

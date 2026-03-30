@@ -4,6 +4,8 @@
 
 <title>Registro Usuario</title>
 
+<link rel="icon" type="image/png" href="imagenes/logo.png">
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
@@ -12,7 +14,6 @@
 
 <h2>Registro de Usuario</h2>
 
-<!-- Formulario -->
 <form action="guardar_usuario.php" method="POST">
 
 <input type="text" name="nombre" class="form-control mb-3" placeholder="Nombre">
@@ -29,6 +30,8 @@
 <input type="password" name="password" class="form-control mb-3" placeholder="Contraseña">
 
 <button class="btn btn-primary">Guardar</button>
+
+<a href="usuarios.php" class="btn btn-secondary">Volver</a>
 
 </form>
 

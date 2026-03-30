@@ -7,7 +7,6 @@ if(isset($_POST['correo'])){
     $correo = $_POST['correo'];
     $password = $_POST['password'];
 
-    // 🔐 Buscar usuario SOLO por correo (NO contraseña)
     $sql = "SELECT * FROM usuarios WHERE correo = ?";
     $stmt = $conexion->prepare($sql);
     $stmt->bind_param("s", $correo);
@@ -19,11 +18,17 @@ if(isset($_POST['correo'])){
 
         $usuario = $resultado->fetch_assoc();
 
-        // 🔐 Verificar contraseña encriptada
         if(password_verify($password, $usuario['password'])){
 
             $_SESSION['usuario'] = $usuario['correo'];
-            header("Location: dashboard.php");
+            $_SESSION['tipo_usuario'] = $usuario['tipo_usuario'];
+
+            if($usuario['tipo_usuario'] == 'Administrador'){
+                header("Location: dashboard.php");
+            } else {
+                header("Location: dashboard_usuario.php");
+            }
+
             exit();
 
         } else {
@@ -44,11 +49,77 @@ if(isset($_POST['correo'])){
 
 <title>Login</title>
 
+<link rel="icon" type="image/png" href="imagenes/logo.png">
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+}
+
+h3 {
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+}
+
+.form-control {
+    border-radius: 10px;
+    border: 1px solid #b9b9b9;
+    transition: 0.3s;
+}
+
+.form-control:focus {
+    border-color: #0ef1c0;
+    box-shadow: 0 0 8px #00b4d8;
+}
+
+.btn-login {
+    background: #00b4d8;
+    color: white;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.btn-login:hover {
+    background: #0ecf75e5;
+}
+
+.btn-link {
+    color: #cececee7;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 15px;
+}
+
+.alert {
+    border-radius: 10px;
+}
+</style>
 </head>
 
-<body class="bg-ligth">
+<body class="bg-light">
 
 <div class="container mt-5">
 
@@ -59,20 +130,20 @@ if(isset($_POST['correo'])){
 <div class="card shadow">
 
 <div class="card-body">
-    
-<img src="imagenes/logo.png" class="logo-inicio mb-3"width="159" height="100">
 
-<h3>Iniciar de Sesión</h3>
+<img src="imagenes/logo.png" class="logo" width="159" height="100">
 
-<?php if(isset($error)){ echo "<div class='alert alert-danger'>$error</div>";}?>
+<h3>Iniciar Sesión</h3>
+
+<?php if(isset($error)){ echo "<div class='alert alert-danger'>$error</div>"; }?>
 
 <form method="POST">
 
-<input type="email" name="correo" class="form-control mb-3" placeholder="Correo">
+<input type="email" name="correo" class="form-control mb-3" placeholder="Correo" required>
 
-<input type="password" name="password" class="form-control mb-3" placeholder="Contraseña">
+<input type="password" name="password" class="form-control mb-3" placeholder="Contraseña" required>
 
-<button class="btn btn-success">Ingresar</button>
+<button class="btn btn-success w-100">Ingresar</button>
 
 <a href="recuperar.php" class="btn btn-link">¿Olvidaste tu contraseña?</a>
 
@@ -97,5 +168,3 @@ body {
 
 </body>
 </html>
-
-

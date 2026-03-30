@@ -19,7 +19,7 @@ $sql = "UPDATE docentes SET
 $resultado = mysqli_query($conexion, $sql);
 
 if($resultado){
-    header("Location: docentes.php"); // vuelve a la lista
+    header("Location: docentes.php"); 
 } else {
     echo "Error al actualizar: " . mysqli_error($conexion);
 }

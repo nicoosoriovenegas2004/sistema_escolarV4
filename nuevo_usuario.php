@@ -4,6 +4,8 @@
 
 <title>Registro Usuario</title>
 
+<link rel="icon" type="image/png" href="imagenes/logo.png">
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
@@ -21,6 +23,7 @@
 
 <select name="tipo_usuario" class="form-control mb-3">
 <option>Administrador</option>
+<option>Usuario</option>
 </select>
 
 <input type="email" name="correo" class="form-control mb-3" placeholder="Correo">
@@ -28,6 +31,8 @@
 <input type="password" name="password" class="form-control mb-3" placeholder="Contraseña">
 
 <button class="btn btn-primary">Guardar</button>
+
+<a href="usuarios.php" class="btn btn-secondary">Volver</a>
 
 </form>
 

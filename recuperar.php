@@ -13,26 +13,21 @@ if(isset($_POST['correo'])){
 
     $correo = $_POST['correo'];
 
-    // Verificar si el correo existe
     $sql = "SELECT * FROM usuarios WHERE correo='$correo'";
     $resultado = mysqli_query($conexion, $sql);
 
     if(mysqli_num_rows($resultado) > 0){
 
-        // Generar token
         $token = bin2hex(random_bytes(50));
         $expira = date("Y-m-d H:i:s", strtotime("+1 hour"));
 
-        // Guardar token en BD
         $sql = "UPDATE usuarios 
                 SET token='$token', token_expira='$expira' 
                 WHERE correo='$correo'";
         mysqli_query($conexion, $sql);
 
-        // Link de recuperación (localhost para pruebas)
         $link = "http://localhost/sistema_escolarV2/restablecer.php?token=$token";
 
-        // PHPMailer
         $mail = new PHPMailer(true);
 
         try {
@@ -44,7 +39,6 @@ if(isset($_POST['correo'])){
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
 
-            // Evitar error de certificado en localhost
             $mail->SMTPOptions = array(
                 'ssl' => array(
                     'verify_peer' => false,
@@ -81,32 +75,116 @@ if(isset($_POST['correo'])){
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Recuperar contraseña</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<title>Recuperar contraseña</title>
+
+<link rel="icon" type="image/png" href="imagenes/logo.png">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+}
+
+h3 {
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+}
+
+.form-control {
+    border-radius: 10px;
+    border: 1px solid #b9b9b9;
+    transition: 0.3s;
+}
+
+.form-control:focus {
+    border-color: #0ef1c0;
+    box-shadow: 0 0 8px #00b4d8;
+}
+
+.btn-login {
+    background: #00b4d8;
+    color: white;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.btn-login:hover {
+    background: #0ecf75e5;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 15px;
+}
+
+.alert {
+    border-radius: 10px;
+}
+</style>
+
 </head>
 
-<body class="container mt-5">
+<body>
+
+<div class="container">
+
 <div class="row justify-content-center">
+
 <div class="col-md-4">
+
 <div class="card shadow">
+
 <div class="card-body">
+
+<img src="imagenes/logo.png" class="mb-3 d-block mx-auto" width="159" height="100">
 
 <h3>Recuperar contraseña</h3>
 
 <?php if(isset($mensaje)){ ?>
-    <div class="alert alert-info"><?php echo $mensaje; ?></div>
+    <div class="alert alert-info text-center"><?php echo $mensaje; ?></div>
 <?php } ?>
 
 <form method="POST">
-    <input type="email" name="correo" class="form-control mb-3" placeholder="Ingresa tu correo" required>
-    <button type="submit" class="btn btn-primary w-100">Enviar enlace</button>
+
+<input type="email" name="correo" class="form-control mb-3" placeholder="Ingresa tu correo" required>
+
+<button type="submit" class="btn btn-login w-100">Enviar enlace</button>
+
+<a href="login.php" class="btn btn-link w-100 mt-2">Volver al login</a>
+
 </form>
 
-<a href="login.php" class="btn btn-link mt-2">Volver al login</a>
+</div>
+</div>
 
 </div>
 </div>
-</div>
+
 </div>
 
 <style>

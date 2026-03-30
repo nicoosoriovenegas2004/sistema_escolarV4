@@ -8,7 +8,6 @@ while ($fila = $resultado->fetch_assoc()) {
     $id = $fila['id'];
     $password_plano = $fila['password'];
 
-    // Si NO está encriptada (no empieza con $2y$)
     if (strpos($password_plano, '$2y$') !== 0) {
 
         $hash = password_hash($password_plano, PASSWORD_DEFAULT);
